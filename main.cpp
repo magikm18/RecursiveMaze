@@ -47,9 +47,7 @@ vn enter(maze _maze, pos _pos, node *parent) {
     if (level >= max_level)
         return {};
     node *base = new node(false, _maze, _pos, parent);
-    //result.push_back(string("Enter ") + (char) (_maze + 'A') + ": " + (char) ((_pos >> 2) + 'A') + to_string(_pos & 3));
     ++level;
-    //frames.push_back({_maze, _pos});
     vp base_out{}; // The final result
     vf base_cont{}; // The possible places to enter
     switch (_pos) {
@@ -242,12 +240,6 @@ vn enter(maze _maze, pos _pos, node *parent) {
         }
     }
     --level;
-    /*
-    cout << string(level, '-') << (char) (_maze + 'A') << (char) ((_pos >> 2) + 'A') << (char) ((_pos & 0b11) + '0') << ':';
-    for (pos p : base_out)
-        cout << ' ' << (char) ((p >> 2) + 'A') << (char) ((p & 0b11) + '0');
-    cout << '\n';
-     */
     if (out.empty() && base_out.empty()) {
         delete base;
         return {};
@@ -364,6 +356,6 @@ int main() {
         copy_if(next.begin(), next.end(), back_inserter(cont), [&used](x _x) { return find(used.begin(), used.end(), _x.first) == used.end(); });
         next.clear();
     }
-    cerr << solutions << " solutions\n";
+    cout << solutions << " solutions\n";
     return 0;
 }
